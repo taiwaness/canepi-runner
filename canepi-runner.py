@@ -27,8 +27,8 @@ pygame.init()
 points = 0
 death_count = 0
 
-SCREEN_HEIGHT = 600
-SCREEN_WIDTH = 1100
+SCREEN_HEIGHT = 1000
+SCREEN_WIDTH = 1500
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 pygame.display.set_caption("Cancer Epigenomic Runner")
@@ -83,8 +83,8 @@ global_player_name = ""  # Global variable to store player name
 class Dinosaur:
 
     X_POS = 80
-    Y_POS = 310
-    Y_POS_DUCK = 340
+    Y_POS = SCREEN_HEIGHT // 2
+    Y_POS_DUCK = SCREEN_HEIGHT // 2 + 30
     JUMP_VEL = 8.5
 
     def __init__(self):
@@ -199,7 +199,7 @@ class SmallCactus(Obstacle):
     def __init__(self, image):
         self.type = random.randint(0, 2)
         super().__init__(image, self.type)
-        self.rect.y = 325
+        self.rect.y = SCREEN_HEIGHT // 2 -10
         # Make small cactus collision box even smaller
         self.rect.inflate_ip(-20, -20)  # Reduce collision box by 20 pixels on each side
 
@@ -208,13 +208,13 @@ class LargeCactus(Obstacle):
     def __init__(self, image):
         self.type = random.randint(0, 2)
         super().__init__(image, self.type)
-        self.rect.y = 300
+        self.rect.y = SCREEN_HEIGHT // 2 - 10
         # Make large cactus collision box even smaller
         self.rect.inflate_ip(-20, -20)  # Reduce collision box by 20 pixels on each side
 
 
 class Bird(Obstacle):
-    BIRD_HEIGHTS = [250, 290, 320]
+    BIRD_HEIGHTS = [(SCREEN_HEIGHT//2 - 60), (SCREEN_HEIGHT//2 -30), (SCREEN_HEIGHT//2+10)]
 
     def __init__(self, image):
         self.type = 0
@@ -242,7 +242,7 @@ def main():
     cloud = Cloud()
     game_speed = 12
     x_pos_bg = 0
-    y_pos_bg = 380
+    y_pos_bg = SCREEN_HEIGHT // 2 + 70
     points = 0
     font = pygame.font.Font("freesansbold.ttf", 20)
     obstacles = []
@@ -517,7 +517,7 @@ def menu(death_count):
         if death_count == 0:
             text = font.render("Press any Key to Start", True, FONT_COLOR)
             textRect = text.get_rect()
-            textRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT - 100)
+            textRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
             SCREEN.blit(text, textRect)
             
             # Move dinosaur to a more central position
