@@ -160,7 +160,7 @@ class Dinosaur:
 class Cloud:
     def __init__(self):
         self.x = SCREEN_WIDTH + random.randint(800, 1000)
-        self.y = random.randint(50, 100)
+        self.y = random.randint(100, 200)
         self.image = CLOUD
         self.width = self.image.get_width()
 
@@ -186,7 +186,7 @@ class Obstacle:
     def update(self):
         self.rect.x -= game_speed
         if self.rect.x < -self.rect.width:
-            obstacles.pop()
+            obstacles.remove(self)
 
     def draw(self, SCREEN):
         # Draw the actual image at the original size
@@ -240,7 +240,7 @@ def main():
     clock = pygame.time.Clock()
     player = Dinosaur()
     cloud = Cloud()
-    game_speed = 15
+    game_speed = 14
     x_pos_bg = 0
     y_pos_bg = SCREEN_HEIGHT // 2 + 70
     points = 0
@@ -343,15 +343,29 @@ def main():
             SCREEN.fill((0, 0, 0))
         userInput = pygame.key.get_pressed()
 
-
+        # Define a list of possible distances
+        distances = [600, 800, 1000, 1100, 1200]
+        # Adjust the frequency of obstacle generation and limit the number of obstacles
         if len(obstacles) == 0:
-            if random.randint(0, 2) == 0:
+            obstacle_type = random.randint(0, 2)
+            if obstacle_type == 0:
                 obstacles.append(SmallCactus(SMALL_CACTUS))
-            elif random.randint(0, 2) == 1:
+            elif obstacle_type == 1:
                 obstacles.append(LargeCactus(LARGE_CACTUS))
-            elif random.randint(0, 2) == 2:
+            else:
                 obstacles.append(Bird(BIRD))
-
+        elif len(obstacles) < 3:  
+            # Ensure the distance between obstacles is far enough
+            if len(obstacles) == 0 or obstacles[-1].rect.x < SCREEN_WIDTH - random.choice(distances):  # Adjust the value 300 as needed
+                obstacle_type = random.randint(0, 2)
+                if obstacle_type == 0:
+                    obstacles.append(SmallCactus(SMALL_CACTUS))
+                elif obstacle_type == 1:
+                    obstacles.append(LargeCactus(LARGE_CACTUS))
+                else:
+                    obstacles.append(Bird(BIRD))
+        
+        
         for obstacle in obstacles:
             obstacle.draw(SCREEN)
             obstacle.update()
@@ -359,7 +373,8 @@ def main():
                 pygame.time.delay(2000)
                 death_count += 1
                 menu(death_count)
-
+        #Remove obstacles that have moved off the screen
+        obstacles = [obstacle for obstacle in obstacles if obstacle.rect.x > -obstacle.rect.width]
         background()
 
         player.draw(SCREEN)
