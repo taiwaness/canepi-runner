@@ -2,43 +2,43 @@
     "leaderboard": [
         {
             "name": "test",
-            "score": 437
+            "score": 280
         },
         {
-            "name": "11111",
-            "score": 353
+            "name": "2222",
+            "score": 260
         },
         {
-            "name": "isbrowser",
-            "score": 352
-        },
-        {
-            "name": "3333",
-            "score": 345
-        },
-        {
-            "name": "test2",
-            "score": 345
-        },
-        {
-            "name": "555545",
-            "score": 271
+            "name": "0000",
+            "score": 240
         },
         {
             "name": "test",
-            "score": 271
+            "score": 220
         },
         {
-            "name": "99999",
-            "score": 271
+            "name": "test",
+            "score": 200
         },
         {
-            "name": "333333",
-            "score": 263
+            "name": "test",
+            "score": 180
         },
         {
-            "name": "666666",
-            "score": 261
+            "name": "test",
+            "score": 160
+        },
+        {
+            "name": "11111",
+            "score": 140
+        },
+        {
+            "name": "isbrowser",
+            "score": 120
+        },
+        {
+            "name": "test",
+            "score": 100
         }
     ]
 }

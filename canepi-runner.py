@@ -83,7 +83,7 @@ global_player_name = ""  # Global variable to store player name
 class Dinosaur:
 
     X_POS = 80
-    Y_POS = SCREEN_HEIGHT // 2
+    Y_POS = SCREEN_HEIGHT // 2 - 15
     Y_POS_DUCK = SCREEN_HEIGHT // 2 + 30
     JUMP_VEL = 8.5
 
@@ -199,7 +199,7 @@ class SmallCactus(Obstacle):
     def __init__(self, image):
         self.type = random.randint(0, 2)
         super().__init__(image, self.type)
-        self.rect.y = SCREEN_HEIGHT // 2 -10
+        self.rect.y = SCREEN_HEIGHT // 2 + 15
         # Make small cactus collision box even smaller
         self.rect.inflate_ip(-20, -20)  # Reduce collision box by 20 pixels on each side
 
@@ -240,7 +240,7 @@ def main():
     clock = pygame.time.Clock()
     player = Dinosaur()
     cloud = Cloud()
-    game_speed = 12
+    game_speed = 15
     x_pos_bg = 0
     y_pos_bg = SCREEN_HEIGHT // 2 + 70
     points = 0
