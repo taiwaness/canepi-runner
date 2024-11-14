@@ -240,7 +240,7 @@ def main():
     clock = pygame.time.Clock()
     player = Dinosaur()
     cloud = Cloud()
-    game_speed = 14
+    game_speed = 13
     x_pos_bg = 0
     y_pos_bg = SCREEN_HEIGHT // 2 + 70
     points = 0
@@ -344,7 +344,7 @@ def main():
         userInput = pygame.key.get_pressed()
 
         # Define a list of possible distances
-        distances = [600, 800, 1000, 1100, 1200]
+        distances = [650, 880, 999, 1050, 1100, 1150,1200]
         # Adjust the frequency of obstacle generation and limit the number of obstacles
         if len(obstacles) == 0:
             obstacle_type = random.randint(0, 2)
